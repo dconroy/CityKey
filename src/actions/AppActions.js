@@ -38,6 +38,39 @@ export const updatesharesInput = (data) => {
   }
 }
 
+/* BEGIN Additions for DCCode2018 */
+export const updateCityIDInput = (data) => {
+  return {
+    type: 'UPDATE_CITY_ID_INPUT',
+    data
+  }
+}
+export const updateNameInput = (data) => {
+  return {
+    type: 'UPDATE_NAME_INPUT',
+    data
+  }
+}
+export const updateStreetInput = (data) => {
+  return {
+    type: 'UPDATE_STREET_INPUT',
+    data
+  }
+}
+export const updateZipCodeInput = (data) => {
+  return {
+    type: 'UPDATE_ZIP_CODE_INPUT',
+    data
+  }
+}
+export const updateBirthdateInput = (data) => {
+  return {
+    type: 'UPDATE_BIRTHDATE_INPUT',
+    data
+  }
+}
+/* END Additions for DCCode2018 */
+
 // //////////////////////////////////////////////
 // Buy Shares
 // //////////////////////////////////////////////

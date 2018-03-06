@@ -76,6 +76,40 @@ export default(state = initialState, payload) => {
         uport: null,
         logOutPage: true
       }
+
+    /* BEGIN Additions for DCCode2018 */
+    case 'UPDATE_CITY_ID_INPUT':
+      return {
+        ...state,
+        cityIDInput: payload.data
+      }
+    case 'UPDATE_NAME_INPUT':
+      return {
+        ...state,
+        nameInput: payload.data
+      }
+    case 'UPDATE_STREET_INPUT':
+      return {
+        ...state,
+        streetInput: payload.data
+      }
+    case 'UPDATE_CITY_INPUT':
+      return {
+        ...state,
+        cityInput: payload.data
+      }
+    case 'UPDATE_ZIP_CODE_INPUT':
+      return {
+        ...state,
+        zipCodeInput: payload.data
+      }
+    case 'UPDATE_BIRTHDATE_INPUT':
+      return {
+        ...state,
+        birthdateInput: payload.data
+      }
+    /* END Additions for DCCode2018 */
+
     default:
       return state
   }

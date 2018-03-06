@@ -121,11 +121,61 @@ class AddIdentity extends Component {
               <FormRow>
                 <label>CityKey ID: </label>
                 <input
-                  id="sharesInput"
-                  type="number"
+                  id="cityIDInput"
+                  type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
                   onChange={this.handleInputChange}
-                  value={this.props.sharesInput}
+                  value={this.props.cityIDInput}
+                />
+              </FormRow>
+              <FormRow>
+                <label>Full Name: </label>
+                <input
+                  id="nameInput"
+                  type="string"
+                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
+                  onChange={this.handleInputChange}
+                  value={this.props.nameInput}
+                />
+              </FormRow>
+              <FormRow>
+                <label>Street Address: </label>
+                <input
+                  id="streetInput"
+                  type="string"
+                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
+                  onChange={this.handleInputChange}
+                  value={this.props.addressInput}
+                />
+              </FormRow>
+              <FormRow>
+                <label>City: </label>
+                <input
+                  id="cityInput"
+                  type="string"
+                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
+                  onChange={this.handleInputChange}
+                  value={this.props.cityInput}
+                />
+              </FormRow>
+              <FormRow>
+                <label>Zip Code: </label>
+                <input
+                  id="zipCodeInput"
+                  type="string"
+                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
+                  onChange={this.handleInputChange}
+                  value={this.props.zipCodeInput}
+                />
+              </FormRow>
+              <FormRow>
+                <label>Birthdate: </label>
+                <input
+                  id="birthdateInput"
+                  type="string"
+                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
+                  onChange={this.handleInputChange}
+                  value={this.props.birthdateInput}
                 />
               </FormRow>
               <FormRow>
