@@ -13,6 +13,11 @@ const SubText = styled.p`
   fontSize: 18px;
 `
 
+const KeyLogo = styled.img`
+  width: 300px;
+
+`
+
 class Welcome extends Component {
 
   constructor (props) {
@@ -33,12 +38,14 @@ class Welcome extends Component {
   render () {
     return (
       <WelcomeWrap>
-        <h4>Transact Safer</h4>
-        <SubText>Escrow Solutions for Ethereum</SubText>
+        <h4>Control Your Identity With CityKey</h4>
+        <SubText>Powered by uPort, running on Ethereum</SubText>
         <ConnectUport
           onClick={this.connectUport}>
           Connect with uPort
         </ConnectUport>
+        <br/>
+        <KeyLogo alt='user-img' src='key.png'></KeyLogo>
       </WelcomeWrap>
     )
   }

@@ -42,7 +42,7 @@ const SubText = styled.p`
   font-size: 18px;
 `
 
-const RELATIONSHIPCLAIM = 'Chicago Resident'
+const RELATIONSHIPCLAIM = 'Resident'
 class CollectCredentials extends Component {
 
   constructor (props) {
@@ -71,7 +71,7 @@ class CollectCredentials extends Component {
   credentialsbtnClickB () {
     uport.attestCredentials({
       sub: this.props.uport.address,
-      claim: {Relationship: RELATIONSHIPCLAIM},
+      claim: {Resident: RELATIONSHIPCLAIM},
       exp: new Date().getTime() + 30 * 24 * 60 * 60 * 1000,  // 30 days from now
       uriHandler: (log) => { console.log(log) }
     })
@@ -102,7 +102,7 @@ class CollectCredentials extends Component {
               </tr>
               <tr>
                 <td>
-                  <CredsLabel>Relationship: Chicago Resident</CredsLabel>
+                  <CredsLabel>Resident: Chicago</CredsLabel>
                 </td>
                 <td>
                   <CredsButton onClick={this.credentialsbtnClickB}>Get</CredsButton>

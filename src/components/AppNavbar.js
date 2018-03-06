@@ -13,7 +13,7 @@ const NavBar = styled.nav`
   padding: 20px 40px;
   font-size: 18px;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
 `
 const LogoLink = styled.a`
@@ -32,7 +32,7 @@ const RightArea = styled.div`
   text-align: left;
 `
 
-const UportAvatarWrap = styled.div` 
+const UportAvatarWrap = styled.div`
 `
 
 const UserName = styled.span`
@@ -57,11 +57,11 @@ class AppNavbar extends Component {
   render () {
     return (
       <NavBar>
-        
+
         <LeftArea>
-          <LogoLink href='/'>uport</LogoLink>
+          <LogoLink href='/'>CityKey</LogoLink>
           <span> | </span>
-          <DemoText>Demo</DemoText>
+          <DemoText>Chicago</DemoText>
         </LeftArea>
 
         <RightArea>

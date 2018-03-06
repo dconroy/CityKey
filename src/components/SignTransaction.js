@@ -91,13 +91,13 @@ class SignTransaction extends Component {
   render () {
     return (
       <SharesWrap>
-        <h4>Sign a transaction</h4>
-        <SubText>Buy Shares</SubText>
+        <h4>Verify Your Information</h4>
+        <SubText>Please refer to your CityKey</SubText>
 
         <SharesArea>
           <CurrentSharesArea >
-            <span>Your current shares: </span>
-            <br />
+            <span>Your current data: </span>
+
             <CurrentSharesNumber>{this.props.sharesTotal}</CurrentSharesNumber>
           </CurrentSharesArea>
 
@@ -117,7 +117,7 @@ class SignTransaction extends Component {
               : (
                 <FormBuyshares>
                   <FormRow>
-                    <label>Shares to Buy: </label>
+                    <label>CityKey ID: </label>
                     <input
                       id='sharesInput'
                       type='number'
@@ -129,7 +129,7 @@ class SignTransaction extends Component {
                     <br />
                     <BtnBuyShares
                       onClick={this.buyShares}>
-                      Buy Shares
+                      Submit for Review
                     </BtnBuyShares>
                   </FormRow>
                   <FormRow>

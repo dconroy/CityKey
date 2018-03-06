@@ -14,28 +14,28 @@ const Link = styled.a`
   display: block;
 `
 
+
 class RegisterYourApp extends Component {
   render () {
     return (
       <RegisterYourAppWrap>
-        <h4>Register your Application</h4>
+        <h4>More Information Regarding CityKey and uPort</h4>
         <br/>
         <Link className='external' target='_blank' href='http://developer.uport.me'>
-          Go to the full Documentation Site.
+          Full Documentation for uPort.
         </Link>
         <br/>
-        <Link className='external' target='_blank' href='http://developer.uport.me/myapps.html'>
-          Go directly to the App Manager in the Documentation Site
+        <Link className='external' target='_blank' href='http://www.chicityclerk.com/chicagocitykey'>
+          More Information about the Chicago CityKey Program.
         </Link>
+
         <br/>
-        <Link className='external' target='_blank' href='https://goo.gl/6mq9NW'>
-          Click here to read the 'How To' Guide for App Manager
-        </Link>
-        <br/>
+
         <NextButton
           onClick={this.props.actions.registerAppAreaComplete}>
           Next
         </NextButton>
+
       </RegisterYourAppWrap>
     )
   }
