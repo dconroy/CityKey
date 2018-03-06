@@ -1,5 +1,14 @@
 let initialState = {
   sharesInput: 0 // Stupid FB warning about controlled inputs
+
+   /* BEGIN Additions for DCCode2018 */
+   ,cityIDInput: ''
+   ,nameInput: ''
+   ,streetInput: ''
+   ,cityInput: ''
+   ,zipCodeInput: ''
+   ,birthdateInput: ''
+   /* END Additions for DCCode2018 */
 }
 
 export default(state = initialState, payload) => {
@@ -20,7 +29,16 @@ export default(state = initialState, payload) => {
       return {
         ...state,
         gettingShares: false,
-        sharesTotal: payload.data
+        sharesTotal: payload.data // deprecated
+        /* BEGIN Additions for DCCode2018 */
+        /* NOTE: Order or values here depends on order of return values of 'getIdentity' function in smart contract */
+        ,cityIDInput: payload.data[0]
+        ,nameInput: payload.data[1]
+        ,streetInput: payload.data[2]
+        ,cityInput: payload.data[3]
+        ,zipCodeInput: payload.data[4]
+        ,birthdateInput: payload.data[5]
+        /* END Additions for DCCode2018 */
       }
     case 'GET_CURRENT_SHARES_ERROR':
       return {

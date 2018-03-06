@@ -57,6 +57,12 @@ export const updateStreetInput = (data) => {
     data
   }
 }
+export const updateCityInput = (data) => {
+  return {
+    type: 'UPDATE_CITY_INPUT',
+    data
+  }
+}
 export const updateZipCodeInput = (data) => {
   return {
     type: 'UPDATE_ZIP_CODE_INPUT',

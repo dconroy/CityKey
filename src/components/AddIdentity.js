@@ -64,7 +64,25 @@ class AddIdentity extends Component {
 
     this.props.actions.buySharesREQUEST(newID);
 
-    CityCardContract.updateCityKeyId(newID, (error, txHash) => {
+    /*
+    string _cityKeyId, 
+	  string _name, 
+	  string _streetAddress, 
+	  string _city, 
+	  uint _zipcode, 
+    string _birthdate
+    */
+
+    /* BEGIN Additions for DCCode2018 */
+    const newCityKey = this.props.cityIDInput;
+    const newName = this.props.nameInput;
+    const newStreetAddress = this.props.streetInput;
+    const newCity = this.props.cityInput;
+    const newZipCode = this.props.zipCodeInput;
+    const newBirthdate = this.props.birthdateInput;
+    /* END Additions for DCCode2018 */
+        
+    CityCardContract.addIdentity(newCityKey, newName, newStreetAddress, newCity, newZipCode, newBirthdate, (error, txHash) => {
       console.log("updateShares");
       if (error) {
         this.props.actions.buySharesERROR(error);
@@ -88,6 +106,14 @@ class AddIdentity extends Component {
   handleInputChange(event) {
     this.props.actions.updatesharesInput(event.target.value);
   }
+
+  /* BEGIN Additions for DCCode2018 */  
+  handleCityInfoChange(action) {
+    return function(event) {
+      action(event.target.value);
+    }
+  }
+  /* END Additions for DCCode2018 */
 
   componentDidMount() {
     // Populate existing shares
@@ -125,7 +151,7 @@ class AddIdentity extends Component {
                   id="cityIDInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateCityIDInput)}
                   value={this.props.cityIDInput}
                 />
               </FormRow>
@@ -135,7 +161,7 @@ class AddIdentity extends Component {
                   id="nameInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateNameInput)}
                   value={this.props.nameInput}
                 />
               </FormRow>
@@ -145,7 +171,7 @@ class AddIdentity extends Component {
                   id="streetInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateStreetInput)}
                   value={this.props.addressInput}
                 />
               </FormRow>
@@ -155,7 +181,7 @@ class AddIdentity extends Component {
                   id="cityInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateCityInput)}
                   value={this.props.cityInput}
                 />
               </FormRow>
@@ -165,7 +191,7 @@ class AddIdentity extends Component {
                   id="zipCodeInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateZipCodeInput)}
                   value={this.props.zipCodeInput}
                 />
               </FormRow>
@@ -175,7 +201,7 @@ class AddIdentity extends Component {
                   id="birthdateInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleInputChange}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateBirthdateInput)}
                   value={this.props.birthdateInput}
                 />
               </FormRow>
@@ -216,6 +242,15 @@ const mapStateToProps = (state, props) => {
     buyingInProgress: state.App.buyingInProgress,
     tx: state.App.tx,
     error: state.App.error
+
+    /* BEGIN Additions for DCCode2018 */
+    ,cityIDInput: state.App.cityIDInput,
+    nameInput: state.App.nameInput,
+    streetInput: state.App.streetInput,
+    cityInput: state.App.cityInput,
+    zipCodeInput: state.App.zipCodeInput,
+    birthdateInput: state.App.birthdateInput
+    /* END Additions for DCCode2018 */
   };
 };
 const mapDispatchToProps = dispatch => {
