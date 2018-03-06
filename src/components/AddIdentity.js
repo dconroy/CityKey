@@ -45,6 +45,7 @@ class AddIdentity extends Component {
 
   getCurrentShares() {
     // TODO: Dump this check once MNID is default behavior
+    console.log(this.props.uport);
     const addr = checkAddressMNID(this.props.uport.address);
     const actions = this.props.actions;
     getShares(addr, actions);

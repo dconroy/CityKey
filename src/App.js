@@ -1,5 +1,6 @@
 // Frameworks
 import React, { Component } from "react";
+import { web3 } from "./utilities/uportSetup";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -34,6 +35,7 @@ const AppBody = styled.div`
 
 class App extends Component {
   render() {
+    console.log(web3);
     return (
       <AppWrap>
         <AppNavbar />

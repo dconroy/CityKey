@@ -2,14 +2,14 @@ import CityCardContract from "../utilities/CityCardContract";
 
 async function getShares(addr, actions) {
   actions.getCurrentSharesREQUEST();
-  CityCardContract.getShares.call(addr, (error, sharesNumber) => {
+  CityCardContract.getIdentity.call(addr, (error, card) => {
     if (error) {
       actions.getCurrentSharesERROR(error);
       throw error;
     }
-    const sharesNumberDecoded = sharesNumber.toNumber();
-    actions.getCurrentSharesSUCCESS(sharesNumberDecoded);
-    return sharesNumberDecoded;
+    console.log(card);
+    actions.getCurrentSharesSUCCESS(card);
+    return card;
   });
 }
 
