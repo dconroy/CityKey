@@ -13,38 +13,32 @@ function CityCardContractSetup() {
       name: "getIdentity",
       outputs: [
         {
-          components: [
-            {
-              name: "cityKeyId",
-              type: "string"
-            },
-            {
-              name: "name",
-              type: "string"
-            },
-            {
-              name: "streetAddress",
-              type: "string"
-            },
-            {
-              name: "city",
-              type: "string"
-            },
-            {
-              name: "zipcode",
-              type: "uint256"
-            },
-            {
-              name: "birthdate",
-              type: "string"
-            },
-            {
-              name: "attested",
-              type: "bool"
-            }
-          ],
           name: "",
-          type: "tuple"
+          type: "string"
+        },
+        {
+          name: "",
+          type: "string"
+        },
+        {
+          name: "",
+          type: "string"
+        },
+        {
+          name: "",
+          type: "string"
+        },
+        {
+          name: "",
+          type: "uint256"
+        },
+        {
+          name: "",
+          type: "string"
+        },
+        {
+          name: "",
+          type: "bool"
         }
       ],
       payable: false,
@@ -201,7 +195,7 @@ function CityCardContractSetup() {
     }
   ]);
   let CityCardContractObj = CityCardABI.at(
-    "0x6731cec4316f10dbc7739403fef12de3f23e42b6"
+    "0x8549bc62b51c2773682066983ce0e4a6069cfc7d"
   );
   return CityCardContractObj;
 }
