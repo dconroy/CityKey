@@ -41,6 +41,14 @@ class AddIdentity extends Component {
     this.getCurrentShares = this.getCurrentShares.bind(this);
     this.buyShares = this.buyShares.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    /* BEGIN Additions for DCCode2018 */
+    this.handleCityKeyChange = this.handleCityKeyChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleStreetChange = this.handleStreetChange.bind(this);
+    this.handleCityChange = this.handleCityChange.bind(this);
+    this.handleZipCodeChange = this.handleZipCodeChange.bind(this);
+    this.handleBirthdateChange = this.handleBirthdateChange.bind(this);
+    /* END Additions for DCCode2018 */
   }
 
   getCurrentShares() {
@@ -64,15 +72,6 @@ class AddIdentity extends Component {
 
     this.props.actions.buySharesREQUEST(newID);
 
-    /*
-    string _cityKeyId, 
-	  string _name, 
-	  string _streetAddress, 
-	  string _city, 
-	  uint _zipcode, 
-    string _birthdate
-    */
-
     /* BEGIN Additions for DCCode2018 */
     const newCityKey = this.props.cityIDInput;
     const newName = this.props.nameInput;
@@ -82,7 +81,7 @@ class AddIdentity extends Component {
     const newBirthdate = this.props.birthdateInput;
     /* END Additions for DCCode2018 */
         
-    CityCardContract.addIdentity(newCityKey, newName, newStreetAddress, newCity, newZipCode, newBirthdate, (error, txHash) => {
+    CityCardContract.addIdentity(newCityKey, newName, newStreetAddress, newCity, parseInt(newZipCode, 0), newBirthdate, (error, txHash) => {
       console.log("updateShares");
       if (error) {
         this.props.actions.buySharesERROR(error);
@@ -108,10 +107,23 @@ class AddIdentity extends Component {
   }
 
   /* BEGIN Additions for DCCode2018 */  
-  handleCityInfoChange(action) {
-    return function(event) {
-      action(event.target.value);
-    }
+  handleCityKeyChange(event) {
+    this.props.actions.updateCityIDInput(event.target.value);
+  }
+  handleNameChange(event) {
+    this.props.actions.updateNameInput(event.target.value);
+  }
+  handleCityChange(event) {
+    this.props.actions.updateCityInput(event.target.value);
+  }
+  handleStreetChange(event) {
+    this.props.actions.updateStreetInput(event.target.value);
+  }
+  handleZipCodeChange(event) {
+    this.props.actions.updateZipCodeInput(event.target.value);
+  }
+  handleBirthdateChange(event) {
+    this.props.actions.updateBirthdateInput(event.target.value);
   }
   /* END Additions for DCCode2018 */
 
@@ -151,7 +163,7 @@ class AddIdentity extends Component {
                   id="cityIDInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateCityIDInput)}
+                  onChange={this.handleCityKeyChange}
                   value={this.props.cityIDInput}
                 />
               </FormRow>
@@ -161,7 +173,7 @@ class AddIdentity extends Component {
                   id="nameInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateNameInput)}
+                  onChange={this.handleNameChange}
                   value={this.props.nameInput}
                 />
               </FormRow>
@@ -171,7 +183,7 @@ class AddIdentity extends Component {
                   id="streetInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateStreetInput)}
+                  onChange={this.handleStreetChange}
                   value={this.props.addressInput}
                 />
               </FormRow>
@@ -181,7 +193,7 @@ class AddIdentity extends Component {
                   id="cityInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateCityInput)}
+                  onChange={this.handleCityChange}
                   value={this.props.cityInput}
                 />
               </FormRow>
@@ -189,9 +201,9 @@ class AddIdentity extends Component {
                 <label>Zip Code: </label>
                 <input
                   id="zipCodeInput"
-                  type="string"
+                  type="number"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateZipCodeInput)}
+                  onChange={this.handleZipCodeChange}
                   value={this.props.zipCodeInput}
                 />
               </FormRow>
@@ -201,7 +213,7 @@ class AddIdentity extends Component {
                   id="birthdateInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateBirthdateInput)}
+                  onChange={this.handleBirthdateChange}
                   value={this.props.birthdateInput}
                 />
               </FormRow>
