@@ -15,6 +15,6 @@ $ yarn install
 ```
 $ npm run start
 ```
-## CREDIT
+## Credit
 David Conroy, Zack Gollwitzer, Camille Jones, Sam Bautista, Steven Burns
 
