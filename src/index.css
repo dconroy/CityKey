@@ -135,3 +135,20 @@ h6 {
   0%   { background-color: #cbd1da; }
   100% { background-color: transparent; }
 }
+
+.cst {
+  text-align: left;
+  margin-top: 20px;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: -1px 1px 15px 1px rgba(0, 0, 0, 0.2);
+}
+.cbt:hover {
+  background-color: white !important;
+  color: #6844cd !important;
+}
+
+.cbt {
+  background-color: #6844cd;
+  border: none;
+ }

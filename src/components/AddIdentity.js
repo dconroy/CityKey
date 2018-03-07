@@ -1,30 +1,14 @@
 // Frameworks
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as AppActions from "../actions/AppActions";
-
 import CityCardContract from "../utilities/CityCardContract";
 import waitForMined from "../utilities/waitForMined";
 import checkAddressMNID from "../utilities/checkAddressMNID";
 import getShares from "../utilities/getShares";
-
 import styled from "styled-components";
 
-const SharesWrap = styled.section`
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    position: inherit;
-  }
-`;
-const SharesArea = styled.div``;
-
-const FormBuyshares = styled.form``;
-const FormRow = styled.div``;
-const BtnBuyShares = styled.button``;
-const NextButton = styled.button`
-  margin-top: 20px;
-`;
 const SubText = styled.p`
   margin: 0 auto 3em auto;
   font-size: 18px;
@@ -37,7 +21,6 @@ class AddIdentity extends Component {
     this.buyShares = this.buyShares.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-
   getCurrentShares() {
     // TODO: Dump this check once MNID is default behavior
     console.log(this.props.uport);
@@ -45,20 +28,14 @@ class AddIdentity extends Component {
     const actions = this.props.actions;
     getShares(addr, actions);
   }
-
   buyShares(e) {
     e.preventDefault();
-
     console.log("buyShares");
-
     let newID = this.props.sharesInput;
     const addr = checkAddressMNID(this.props.uport.address);
     const actions = this.props.actions;
-
     console.log({ newID, addr, actions });
-
     this.props.actions.buySharesREQUEST(newID);
-
     /* BEGIN Additions for DCCode2018 */
     const newCityKey = this.props.cityIDInput;
     const newName = this.props.nameInput;
@@ -67,32 +44,37 @@ class AddIdentity extends Component {
     const newZipCode = this.props.zipCodeInput;
     const newBirthdate = this.props.birthdateInput;
     /* END Additions for DCCode2018 */
-        
-    CityCardContract.addIdentity(newCityKey, newName, newStreetAddress, newCity, newZipCode, newBirthdate, (error, txHash) => {
-      console.log("updateShares");
-      if (error) {
-        this.props.actions.buySharesERROR(error);
-      }
-      waitForMined(
-        addr,
-        txHash,
-        { blockNumber: null },
-        actions,
-        () => {
-          this.props.actions.buySharesPENDING();
-        },
-        () => {
-          console.log("waitForMined complete");
-          this.props.actions.buySharesSUCCESS(txHash);
+    CityCardContract.addIdentity(
+      newCityKey,
+      newName,
+      newStreetAddress,
+      newCity,
+      newZipCode,
+      newBirthdate,
+      (error, txHash) => {
+        console.log("updateShares");
+        if (error) {
+          this.props.actions.buySharesERROR(error);
         }
-      );
-    });
+        waitForMined(
+          addr,
+          txHash,
+          { blockNumber: null },
+          actions,
+          () => {
+            this.props.actions.buySharesPENDING();
+          },
+          () => {
+            console.log("waitForMined complete");
+            this.props.actions.buySharesSUCCESS(txHash);
+          }
+        );
+      }
+    );
   }
-
   handleInputChange(event) {
     this.props.actions.updatesharesInput(event.target.value);
   }
-
   /* BEGIN Additions for DCCode2018 */  
   handleCityInfoChange(action) {
     return function(event) {
@@ -100,22 +82,18 @@ class AddIdentity extends Component {
     }
   }
   /* END Additions for DCCode2018 */
-
   componentDidMount() {
     // Populate existing shares
     this.getCurrentShares();
   }
-
   render() {
     return (
-      <SharesWrap>
+      <div>
         <h4>Your CityKey</h4>
         {this.props.buyingInProgress ? 
         <SubText>Waiting for the transaction to process, this could take a minute or two...</SubText> :
         <SubText>Create or update your personal information</SubText> }
-
-        <SharesArea>
-
+        <div>
           {this.props.buyingInProgress ? (
             <div>
               <br />
@@ -127,95 +105,121 @@ class AddIdentity extends Component {
               <br />
             </div>
           ) : (
-            <FormBuyshares>
-              <FormRow>
-                <label>CityKey ID: </label>
-                <input
-                  id="cityIDInput"
-                  type="string"
-                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateCityIDInput)}
-                  value={this.props.cityIDInput}
-                />
-              </FormRow>
-              <FormRow>
-                <label>Full Name: </label>
-                <input
-                  id="nameInput"
-                  type="string"
-                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateNameInput)}
-                  value={this.props.nameInput}
-                />
-              </FormRow>
-              <FormRow>
-                <label>Street Address: </label>
-                <input
-                  id="streetInput"
-                  type="string"
-                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateStreetInput)}
-                  value={this.props.streetInput}
-                />
-              </FormRow>
-              <FormRow>
-                <label>City: </label>
-                <input
-                  id="cityInput"
-                  type="string"
-                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateCityInput)}
-                  value={this.props.cityInput}
-                />
-              </FormRow>
-              <FormRow>
-                <label>Zip Code: </label>
-                <input
-                  id="zipCodeInput"
-                  type="string"
-                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateZipCodeInput)}
-                  value={this.props.zipCodeInput}
-                />
-              </FormRow>
-              <FormRow>
-                <label>Birthdate: </label>
-                <input
-                  id="birthdateInput"
-                  type="string"
-                  style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityInfoChange(this.props.actions.updateBirthdateInput)}
-                  value={this.props.birthdateInput}
-                />
-              </FormRow>
-              {!this.props.buyingInProgress && !this.props.confirmingInProgress ? (
-              <FormRow>
-                <br />
-                <BtnBuyShares onClick={this.buyShares}>
-                  Submit
-                </BtnBuyShares>
-              </FormRow>) : null}
-              <FormRow>
-                {this.props.buyingInProgress ? (
-                  <div>Please wait for transaction on phone</div>
+            <form className="container">
+              <div className="col-6 mr-auto ml-auto cst">
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">
+                    CityKey ID:{" "}
+                  </label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="cityIDInput"
+                      type="string"
+                      onChange={this.handleCityInfoChange(this.props.actions.updateCityIDInput)}
+                      value={this.props.cityIDInput}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Full Name: </label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="nameInput"
+                      type="string"
+                      onChange={this.handleCityInfoChange(this.props.actions.updateNameInput)}
+                      value={this.props.nameInput}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">
+                    Street Address:{" "}
+                  </label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="streetInput"
+                      type="string"
+                      onChange={this.handleCityInfoChange(this.props.actions.updateStreetInput)}
+                      value={this.props.streetInput}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">City: </label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="cityInput"
+                      type="string"
+                      onChange={this.handleCityInfoChange(this.props.actions.updateCityInput)}
+                      value={this.props.cityInput}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Zip Code: </label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="zipCodeInput"
+                      type="string"
+                      onChange={this.handleZipCodeChange}
+                      value={this.props.zipCodeInput}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label className="col-sm-4 col-form-label">Birthdate: </label>
+                  <div className="col-sm-8">
+                    <input
+                      className="form-control"
+                      id="birthdateInput"
+                      type="string"
+                      onChange={this.handleCityInfoChange(this.props.actions.updateBirthdateInput)}
+                      value={this.props.birthdateInput}
+                    />
+                  </div>
+                </div>
+                {!this.props.buyingInProgress &&
+                !this.props.confirmingInProgress ? (
+                  <div>
+                    <br />
+                    <button
+                      className="btn btn-primary btn-block cbt"
+                      onClick={this.buyShares}
+                    >
+                      Submit
+                    </button>
+                  </div>
                 ) : null}
-              </FormRow>
-            </FormBuyshares>
+                <div>
+                  {this.props.buyingInProgress ? (
+                    <div>Please wait for transaction on phone</div>
+                  ) : null}
+                </div>
+              </div>
+            </form>
           )}
-        </SharesArea>
+        </div>
         {this.props.confirmingInProgress ? (
-          <div><br/><br/>Please confirm the transaction on your phone<br/>(it might take up to a minute to appear)</div>
+          <div><br/><br/>Please confirm the transaction on your phone<br/>(it might take up to a minute to appear)<br/></div>
         ) : <br/>}
 
-        <NextButton onClick={this.props.actions.buySharesDemoComplete}>
-          Next
-        </NextButton>
-
-      </SharesWrap>
+        <div className="col-2 mr-auto ml-auto">
+          <button
+            className="btn btn-primary btn-block cbt"
+            onClick={this.props.actions.buySharesDemoComplete}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     );
   }
 }
-
 const mapStateToProps = (state, props) => {
   return {
     uport: state.App.uport,
@@ -225,10 +229,9 @@ const mapStateToProps = (state, props) => {
     sharesTotal: state.App.sharesTotal,
     buyingInProgress: state.App.buyingInProgress,
     tx: state.App.tx,
-    error: state.App.error
-
+    error: state.App.error,
     /* BEGIN Additions for DCCode2018 */
-    ,cityIDInput: state.App.cityIDInput,
+    cityIDInput: state.App.cityIDInput,
     nameInput: state.App.nameInput,
     streetInput: state.App.streetInput,
     cityInput: state.App.cityInput,
