@@ -13,3 +13,14 @@ Accomplishments
 What we learned
 ## What's next for City Key Pair
 Whats next is
+
+
+###### Getting started
+```
+$ yarn install
+```
+
+###### Development
+```
+$ npm run start
+```
