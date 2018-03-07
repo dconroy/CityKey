@@ -38,7 +38,8 @@ const SubText = styled.p`
   font-size: 18px;
 `
 
-const RELATIONSHIPCLAIM = 'Resident'
+const CITY_NAME = 'Chicago'
+
 class CollectCredentials extends Component {
 
   constructor (props) {
@@ -67,7 +68,7 @@ class CollectCredentials extends Component {
   credentialsbtnClickB () {
     uport.attestCredentials({
       sub: this.props.uport.address,
-      claim: {Resident: RELATIONSHIPCLAIM},
+      claim: {Resident: CITY_NAME},
       exp: new Date().getTime() + 30 * 24 * 60 * 60 * 1000,  // 30 days from now
       uriHandler: (log) => { console.log(log) }
     })
