@@ -40,14 +40,6 @@ class AddIdentity extends Component {
     this.getCurrentShares = this.getCurrentShares.bind(this);
     this.buyShares = this.buyShares.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    /* BEGIN Additions for DCCode2018 */
-    this.handleCityKeyChange = this.handleCityKeyChange.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleStreetChange = this.handleStreetChange.bind(this);
-    this.handleCityChange = this.handleCityChange.bind(this);
-    this.handleZipCodeChange = this.handleZipCodeChange.bind(this);
-    this.handleBirthdateChange = this.handleBirthdateChange.bind(this);
-    /* END Additions for DCCode2018 */
   }
 
   getCurrentShares() {
@@ -106,23 +98,10 @@ class AddIdentity extends Component {
   }
 
   /* BEGIN Additions for DCCode2018 */  
-  handleCityKeyChange(event) {
-    this.props.actions.updateCityIDInput(event.target.value);
-  }
-  handleNameChange(event) {
-    this.props.actions.updateNameInput(event.target.value);
-  }
-  handleCityChange(event) {
-    this.props.actions.updateCityInput(event.target.value);
-  }
-  handleStreetChange(event) {
-    this.props.actions.updateStreetInput(event.target.value);
-  }
-  handleZipCodeChange(event) {
-    this.props.actions.updateZipCodeInput(event.target.value);
-  }
-  handleBirthdateChange(event) {
-    this.props.actions.updateBirthdateInput(event.target.value);
+  handleCityInfoChange(action) {
+    return function(event) {
+      action(event.target.value);
+    }
   }
   /* END Additions for DCCode2018 */
 
@@ -132,18 +111,12 @@ class AddIdentity extends Component {
   }
 
   render() {
-    const cityKey = this.props.cityIDInput;
-    const name = this.props.nameInput;
-    const streetAddress = this.props.streetInput
-    const city = this.props.cityInput;
-    const zipCode = this.props.zipCodeInput;
-    const birthdate = this.props.birthdateInput;
     return (
       <SharesWrap>
         <h4>Your CityKey</h4>
-        {!this.props.buyingInProgress || !this.props.confirmingInProgress ? 
-        <SubText>Create or update your personal information</SubText> :
-        <SubText>Waiting for the transaction to process, this could take a minute or two...</SubText> }
+        {this.props.buyingInProgress ? 
+        <SubText>Waiting for the transaction to process, this could take a minute or two...</SubText> :
+        <SubText>Create or update your personal information</SubText> }
 
         <SharesArea>
 
@@ -165,8 +138,8 @@ class AddIdentity extends Component {
                   id="cityIDInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityKeyChange}
-                  value={cityKey}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateCityIDInput)}
+                  value={this.props.cityIDInput}
                 />
               </FormRow>
               <FormRow>
@@ -175,8 +148,8 @@ class AddIdentity extends Component {
                   id="nameInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleNameChange}
-                  value={name}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateNameInput)}
+                  value={this.props.nameInput}
                 />
               </FormRow>
               <FormRow>
@@ -185,8 +158,8 @@ class AddIdentity extends Component {
                   id="streetInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleStreetChange}
-                  value={streetAddress}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateStreetInput)}
+                  value={this.props.streetInput}
                 />
               </FormRow>
               <FormRow>
@@ -195,18 +168,18 @@ class AddIdentity extends Component {
                   id="cityInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleCityChange}
-                  value={city}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateCityInput)}
+                  value={this.props.cityInput}
                 />
               </FormRow>
               <FormRow>
                 <label>Zip Code: </label>
                 <input
                   id="zipCodeInput"
-                  type="number"
+                  type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleZipCodeChange}
-                  value={zipCode}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateZipCodeInput)}
+                  value={this.props.zipCodeInput}
                 />
               </FormRow>
               <FormRow>
@@ -215,8 +188,8 @@ class AddIdentity extends Component {
                   id="birthdateInput"
                   type="string"
                   style={{ paddingLeft: ".5em", "font-size": "16px" }}
-                  onChange={this.handleBirthdateChange}
-                  value={birthdate}
+                  onChange={this.handleCityInfoChange(this.props.actions.updateBirthdateInput)}
+                  value={this.props.birthdateInput}
                 />
               </FormRow>
               {!this.props.buyingInProgress && !this.props.confirmingInProgress ? (
