@@ -84,7 +84,7 @@ class CollectCredentials extends Component {
   render (props) {
     return (
       <CredentialsWrap>
-        <h4>Reclaim ownership of your data</h4>
+        <h4>Send verifiable claims</h4>
         <CredentialsArea>
           <CredsTable>
             <tbody>
