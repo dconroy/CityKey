@@ -1,4 +1,4 @@
-![Logo 1](./public/key.png "logo 1")
+![Logo 1](./public/unlock-chicago.jpg "logo 1")
 
 ## Summary
 [CityKey](https://www.chicityclerk.com/chicagocitykey) is a valid, government-issued ID card offered to all municipal residents to prove identity and residency for city programs and services. Our project's goal is to increase the adoption of decentralized ID's by bridging on-chain and off-chain identities. By using [uPort](https://uport.me), a self-sovereign identity system built on the Ethereum blockchain, users will have a secure, cost effective and interoperable blockchain identity.
