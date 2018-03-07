@@ -3,20 +3,6 @@ import { web3 } from "./uportSetup";
 function CityCardContractSetup() {
   let CityCardABI = web3.eth.contract([
     {
-      constant: false,
-      inputs: [
-        {
-          name: "_address",
-          type: "address"
-        }
-      ],
-      name: "attestCredentials",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
       constant: true,
       inputs: [
         {
@@ -61,17 +47,12 @@ function CityCardContractSetup() {
     },
     {
       constant: true,
-      inputs: [
-        {
-          name: "",
-          type: "address"
-        }
-      ],
-      name: "approvedCityOfficial",
+      inputs: [],
+      name: "contractOwner",
       outputs: [
         {
           name: "",
-          type: "bool"
+          type: "address"
         }
       ],
       payable: false,
@@ -122,31 +103,18 @@ function CityCardContractSetup() {
       type: "function"
     },
     {
-      constant: false,
-      inputs: [
-        {
-          name: "_address",
-          type: "address"
-        },
-        {
-          name: "_cityKeyId",
-          type: "string"
-        }
-      ],
-      name: "updateCityKeyId",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
       constant: true,
-      inputs: [],
-      name: "contractOwner",
-      outputs: [
+      inputs: [
         {
           name: "",
           type: "address"
+        }
+      ],
+      name: "approvedCityOfficial",
+      outputs: [
+        {
+          name: "",
+          type: "bool"
         }
       ],
       payable: false,
@@ -188,6 +156,38 @@ function CityCardContractSetup() {
       type: "function"
     },
     {
+      constant: false,
+      inputs: [
+        {
+          name: "_address",
+          type: "address"
+        }
+      ],
+      name: "attestCredentials",
+      outputs: [],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      constant: false,
+      inputs: [
+        {
+          name: "_address",
+          type: "address"
+        },
+        {
+          name: "_cityKeyId",
+          type: "string"
+        }
+      ],
+      name: "updateCityKeyId",
+      outputs: [],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
       inputs: [],
       payable: false,
       stateMutability: "nonpayable",
@@ -195,7 +195,7 @@ function CityCardContractSetup() {
     }
   ]);
   let CityCardContractObj = CityCardABI.at(
-    "0x5aae4b977302c5ff83447563fb6651dabd5b0590"
+    "0xdb18d9940034ba486182f97f6d61322e680505ca"
   );
   return CityCardContractObj;
 }
