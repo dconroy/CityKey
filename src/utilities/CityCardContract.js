@@ -3,6 +3,20 @@ import { web3 } from "./uportSetup";
 function CityCardContractSetup() {
   let CityCardABI = web3.eth.contract([
     {
+      constant: false,
+      inputs: [
+        {
+          name: "_address",
+          type: "address"
+        }
+      ],
+      name: "attestCredentials",
+      outputs: [],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
       constant: true,
       inputs: [
         {
@@ -30,7 +44,7 @@ function CityCardContractSetup() {
         },
         {
           name: "",
-          type: "uint256"
+          type: "string"
         },
         {
           name: "",
@@ -47,12 +61,17 @@ function CityCardContractSetup() {
     },
     {
       constant: true,
-      inputs: [],
-      name: "contractOwner",
-      outputs: [
+      inputs: [
         {
           name: "",
           type: "address"
+        }
+      ],
+      name: "approvedCityOfficial",
+      outputs: [
+        {
+          name: "",
+          type: "bool"
         }
       ],
       payable: false,
@@ -87,7 +106,7 @@ function CityCardContractSetup() {
         },
         {
           name: "zipcode",
-          type: "uint256"
+          type: "string"
         },
         {
           name: "birthdate",
@@ -103,18 +122,31 @@ function CityCardContractSetup() {
       type: "function"
     },
     {
-      constant: true,
+      constant: false,
       inputs: [
         {
-          name: "",
+          name: "_address",
           type: "address"
+        },
+        {
+          name: "_cityKeyId",
+          type: "string"
         }
       ],
-      name: "approvedCityOfficial",
+      name: "updateCityKeyId",
+      outputs: [],
+      payable: false,
+      stateMutability: "nonpayable",
+      type: "function"
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: "contractOwner",
       outputs: [
         {
           name: "",
-          type: "bool"
+          type: "address"
         }
       ],
       payable: false,
@@ -142,7 +174,7 @@ function CityCardContractSetup() {
         },
         {
           name: "_zipcode",
-          type: "uint256"
+          type: "string"
         },
         {
           name: "_birthdate",
@@ -156,38 +188,6 @@ function CityCardContractSetup() {
       type: "function"
     },
     {
-      constant: false,
-      inputs: [
-        {
-          name: "_address",
-          type: "address"
-        }
-      ],
-      name: "attestCredentials",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
-      constant: false,
-      inputs: [
-        {
-          name: "_address",
-          type: "address"
-        },
-        {
-          name: "_cityKeyId",
-          type: "string"
-        }
-      ],
-      name: "updateCityKeyId",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function"
-    },
-    {
       inputs: [],
       payable: false,
       stateMutability: "nonpayable",
@@ -195,7 +195,7 @@ function CityCardContractSetup() {
     }
   ]);
   let CityCardContractObj = CityCardABI.at(
-    "0x8549bc62b51c2773682066983ce0e4a6069cfc7d"
+    "0x5aae4b977302c5ff83447563fb6651dabd5b0590"
   );
   return CityCardContractObj;
 }
