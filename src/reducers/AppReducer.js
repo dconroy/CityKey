@@ -29,7 +29,7 @@ export default(state = initialState, payload) => {
       return {
         ...state,
         gettingShares: false,
-        sharesTotal: payload.data // deprecated
+        sharesTotal: 0 // deprecated
         /* BEGIN Additions for DCCode2018 */
         /* NOTE: Order or values here depends on order of return values of 'getIdentity' function in smart contract */
         ,cityIDInput: payload.data[0]
@@ -67,8 +67,7 @@ export default(state = initialState, payload) => {
       return {
         ...state,
         txHash: payload.tx,
-        buyingInProgress: false,
-        sharesTotal: payload.data
+        buyingInProgress: false
       }
     case 'BUY_SHARES_ERROR':
       return {
