@@ -166,7 +166,7 @@ class AddIdentity extends Component {
                       className="form-control"
                       id="zipCodeInput"
                       type="string"
-                      onChange={this.handleZipCodeChange}
+                      onChange={this.handleCityInfoChange(this.props.actions.updateZipCodeInput)}
                       value={this.props.zipCodeInput}
                     />
                   </div>
