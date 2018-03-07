@@ -79,12 +79,14 @@ export default(state = initialState, payload) => {
     case 'BUY_SHARES_DEMO_COMPLETE':
       return {
         ...state,
+        signTransactionPage: false,
         collectCredentialsPage: true
       }
 
     case 'CREDENTIALS_DEMO_COMPLETE':
       return {
         ...state,
+        signTransactionPage: false,
         registerYourAppPage: true
       }
     case 'LOGOUT':

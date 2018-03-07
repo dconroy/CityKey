@@ -18,18 +18,17 @@ const SharesWrap = styled.section`
   }
 `;
 const SharesArea = styled.div``;
+/*
 const CurrentSharesArea = styled.div`
   margin-bottom: 20px;
 `;
 const CurrentSharesNumber = styled.span`
   color: white;
 `;
+*/
 const FormBuyshares = styled.form``;
 const FormRow = styled.div``;
 const BtnBuyShares = styled.button``;
-const NextButton = styled.button`
-  margin-top: 20px;
-`;
 const SubText = styled.p`
   margin: 0 auto 3em auto;
   font-size: 18px;
@@ -139,18 +138,14 @@ class AddIdentity extends Component {
     const city = this.props.cityInput;
     const zipCode = this.props.zipCodeInput;
     const birthdate = this.props.birthdateInput;
-    console.log(this.props);
     return (
       <SharesWrap>
-        <h4>Verify Your Information</h4>
-        <SubText>Please refer to your CityKey</SubText>
+        <h4>Your CityKey</h4>
+        {!this.props.buyingInProgress || !this.props.confirmingInProgress ? 
+        <SubText>Create or update your personal information</SubText> :
+        <SubText>Waiting for the transaction to process, this could take a minute or two...</SubText> }
 
         <SharesArea>
-          <CurrentSharesArea>
-            <span>Your current data: </span>
-
-            <CurrentSharesNumber>{this.props.sharesTotal}</CurrentSharesNumber>
-          </CurrentSharesArea>
 
           {this.props.buyingInProgress ? (
             <div>
@@ -224,28 +219,24 @@ class AddIdentity extends Component {
                   value={birthdate}
                 />
               </FormRow>
+              {!this.props.buyingInProgress && !this.props.confirmingInProgress ? (
               <FormRow>
                 <br />
                 <BtnBuyShares onClick={this.buyShares}>
-                  Submit for Review
+                  Submit
                 </BtnBuyShares>
-              </FormRow>
+              </FormRow>) : null}
               <FormRow>
-                <br />
                 {this.props.buyingInProgress ? (
-                  <div>Please wait for transaction card on phone</div>
+                  <div>Please wait for transaction on phone</div>
                 ) : null}
               </FormRow>
             </FormBuyshares>
           )}
         </SharesArea>
         {this.props.confirmingInProgress ? (
-          <div>Please confirm the transaction card on your phone</div>
+          <div><br/>Please confirm the transaction on your phone</div>
         ) : null}
-
-        <NextButton onClick={this.props.actions.buySharesDemoComplete}>
-          Next
-        </NextButton>
       </SharesWrap>
     );
   }
