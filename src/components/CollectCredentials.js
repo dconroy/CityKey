@@ -33,10 +33,6 @@ const CredsButton = styled.button`
   margin-top: 20px;
 `
 
-const NextButton = styled.button`
-  margin-top: 20px;
-`
-
 const SubText = styled.p`
   margin: 20px auto 3em auto;
   font-size: 18px;
@@ -97,7 +93,7 @@ class CollectCredentials extends Component {
                   <CredsLabel>Name: {this.props.uport.name}</CredsLabel>
                 </td>
                 <td>
-                  <CredsButton onClick={this.credentialsbtnClickA}>Get</CredsButton>
+                  <CredsButton onClick={this.credentialsbtnClickA}>Send</CredsButton>
                 </td>
               </tr>
               <tr>
@@ -105,7 +101,7 @@ class CollectCredentials extends Component {
                   <CredsLabel>Resident: Chicago</CredsLabel>
                 </td>
                 <td>
-                  <CredsButton onClick={this.credentialsbtnClickB}>Get</CredsButton>
+                  <CredsButton onClick={this.credentialsbtnClickB}>Send</CredsButton>
                 </td>
               </tr>
               <tr>
@@ -113,12 +109,11 @@ class CollectCredentials extends Component {
                   <CredsLabel>Credential: City Key ID</CredsLabel>
                 </td>
                 <td>
-                  <CredsButton onClick={this.credentialsbtnClickC}>Get</CredsButton>
+                  <CredsButton onClick={this.credentialsbtnClickC}>Send</CredsButton>
                 </td>
               </tr>
             </tbody>
           </CredsTable>
-          <NextButton onClick={this.props.actions.credentialsDemoComplete}>Next</NextButton>
         </CredentialsArea>
         <SubText>Credentials take a moment to appear on your device.</SubText>
       </CredentialsWrap>

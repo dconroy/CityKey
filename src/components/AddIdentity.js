@@ -18,17 +18,13 @@ const SharesWrap = styled.section`
   }
 `;
 const SharesArea = styled.div``;
-/*
-const CurrentSharesArea = styled.div`
-  margin-bottom: 20px;
-`;
-const CurrentSharesNumber = styled.span`
-  color: white;
-`;
-*/
+
 const FormBuyshares = styled.form``;
 const FormRow = styled.div``;
 const BtnBuyShares = styled.button``;
+const NextButton = styled.button`
+  margin-top: 20px;
+`;
 const SubText = styled.p`
   margin: 0 auto 3em auto;
   font-size: 18px;
@@ -208,8 +204,13 @@ class AddIdentity extends Component {
           )}
         </SharesArea>
         {this.props.confirmingInProgress ? (
-          <div><br/>Please confirm the transaction on your phone</div>
-        ) : null}
+          <div><br/><br/>Please confirm the transaction on your phone<br/>(it might take up to a minute to appear)</div>
+        ) : <br/>}
+
+        <NextButton onClick={this.props.actions.buySharesDemoComplete}>
+          Next
+        </NextButton>
+
       </SharesWrap>
     );
   }

@@ -68,12 +68,15 @@ export default(state = initialState, payload) => {
         ...state,
         txHash: payload.tx,
         buyingInProgress: false
+        /* BEGIN Additions for DCCode2018 */
+        ,signTransactionPage: false,
+        collectCredentialsPage: true
+        /* END Additions for DCCode2018 */
       }
     case 'BUY_SHARES_ERROR':
       return {
         ...state,
-        buyingInProgress: false,
-        sharesTotal: payload.data
+        buyingInProgress: false
       }
 
     case 'BUY_SHARES_DEMO_COMPLETE':
