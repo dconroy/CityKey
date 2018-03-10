@@ -1,6 +1,7 @@
 {
-  "name": "demo",
-  "version": "1.4.0",
+  "name": "citykey",
+  "homepage": "http://citykeychained.com",
+  "version": "1.0.0",
   "private": true,
   "devDependencies": {
     "autoprefixer": "6.5.1",
@@ -27,6 +28,7 @@
     "file-loader": "0.9.0",
     "filesize": "3.3.0",
     "fs-extra": "0.30.0",
+    "gh-pages": "^1.1.0",
     "gzip-size": "3.0.0",
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.2",
@@ -65,10 +67,7 @@
     "build": "node scripts/build.js",
     "pre-deploy": "npm i && npm run build",
     "safe-deploy": "bash ./safe-deploy.sh",
-    "deploy": "npm run pre-deploy && npm run deploy-to-s3 demo.uport.me && npm run invalidate E2QS4BB2HWFFZ2",
-    "deploy-test": "npm run pre-deploy && npm run deploy-to-s3 demo.uport.space && npm run invalidate E3PKUGAQ52BBOT",
-    "deploy-to-s3": "node_modules/.bin/s3-deploy './build/**' --cwd './build/' --region us-west-2 --bucket",
-    "invalidate": "node_modules/.bin/aws-cloudfront-invalidate"
+    "deploy" : "npm run build && gh-pages -d build"
   },
   "jest": {
     "collectCoverageFrom": [

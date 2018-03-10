@@ -39,7 +39,7 @@ class Welcome extends Component {
     return (
       <WelcomeWrap>
         <h4>Control Your Identity With CityKey</h4>
-        <SubText>Powered by uPort, running on Ethereum</SubText>
+        <SubText>Powered by uPort, running on Ethereum.</SubText>
         <ConnectUport
           onClick={this.connectUport}>
           Connect with uPort
